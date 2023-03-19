@@ -2,7 +2,7 @@
 #define PARITY_H
 
 #include <vector>
-#include <cstdio>
+#include <fstream>
 #include <iostream>
 #include <string>
 
@@ -10,11 +10,12 @@ class Parity {
     public:
         void prepParityCalc();
         void prepParityFix();
+        unsigned char parityCalc(std::vector<unsigned char>);
+        //void openFiles();
     private:
-        int parityCalc(std::vector<FILE *>);
-        void parityFix(std::vector<FILE *>, FILE *);
-        int parityAmount;
-        std::vector<std::string> filenames;
+        
+        int parityCheck(std::vector<unsigned char>);
+        std::vector<std::fstream> openedFiles;
 };
 
 #endif

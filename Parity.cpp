@@ -10,12 +10,25 @@ void Parity::prepParityFix()
 
 }
 
-int Parity::parityCalc(std::vector<FILE *> files)
+unsigned char Parity::parityCalc(std::vector<unsigned char> pAmounts)
 {
-    return 0;
+    unsigned char parityResult = 0x00;
+    unsigned char singleParity = 0x00;
+    int size = pAmounts.size();
+    unsigned char andMask = 0x01;
+    for(int shift = 0; shift < 7; shift++)
+    {
+        for (int counter = 0; counter < size; counter++)
+        {
+            singleParity = singleParity ^ ((pAmounts[counter] >> shift) & andMask);
+        }
+        parityResult = parityResult + (singleParity << shift);
+        singleParity = 0x00;
+    }
+    return parityResult;
 }
 
-void Parity::parityFix(std::vector<FILE*> files, FILE * fileFix)
+int Parity::parityCheck(std::vector<unsigned char> pChecks)
 {
 
 }
