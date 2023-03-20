@@ -15,7 +15,7 @@ unsigned char Parity::parityCalc(Paritied pAmounts, int size)
     unsigned char parityResult = 0x00;
     unsigned char singleParity = 0x00;
     unsigned char andMask = 0x01;
-    for(int shift = 0; shift < 7; shift++)
+    for(int shift = 0; shift < 8; shift++)
     {
         for (int counter = 0; counter < size; counter++)
         {
@@ -32,7 +32,7 @@ int Parity::parityCheck(Paritied pCheck, int size)
     int parityResult = 0;
     unsigned char singleParity = 0x00;
     unsigned char andMask = 0x01;
-    for(int shift = 0; shift < 7; shift++)
+    for(int shift = 0; shift < 8; shift++)
     {
         for (int counter = 0; counter < size; counter++)
         {
