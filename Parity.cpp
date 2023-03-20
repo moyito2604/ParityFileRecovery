@@ -10,11 +10,10 @@ void Parity::prepParityFix()
 
 }
 
-unsigned char Parity::parityCalc(std::vector<unsigned char> pAmounts)
+unsigned char Parity::parityCalc(Paritied pAmounts, int size)
 {
     unsigned char parityResult = 0x00;
     unsigned char singleParity = 0x00;
-    int size = pAmounts.size();
     unsigned char andMask = 0x01;
     for(int shift = 0; shift < 7; shift++)
     {
@@ -28,7 +27,19 @@ unsigned char Parity::parityCalc(std::vector<unsigned char> pAmounts)
     return parityResult;
 }
 
-int Parity::parityCheck(std::vector<unsigned char> pChecks)
+int Parity::parityCheck(Paritied pCheck, int size)
 {
-
+    int parityResult = 0;
+    unsigned char singleParity = 0x00;
+    unsigned char andMask = 0x01;
+    for(int shift = 0; shift < 7; shift++)
+    {
+        for (int counter = 0; counter < size; counter++)
+        {
+            singleParity = singleParity ^ ((pCheck[counter] >> shift) & andMask);
+        }
+        parityResult = parityResult + (int)singleParity;
+        singleParity = 0x00;
+    }
+    return parityResult;
 }
