@@ -1,7 +1,9 @@
 compile:
-	g++ -g Driver.cpp Parity.cpp
+	g++ -g Driver.cpp Parity.cpp -o FileRecovery.out
+test-compile:
+	g++ -g testDriver.cpp Parity.cpp -o FileRecovery.out
 run:
-	./a.out
+	./FileRecovery.out
 clean:
 	rm -rf *.exe
 	rm -rf *.out
